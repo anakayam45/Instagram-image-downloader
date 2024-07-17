@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>insta</title>
+  <style>
+  p {
+    width: 200px;
+    height: 10px auto;
+    padding: 10px 5px;
+    border: 1px solid #888;
+    color: #999;
+    border-radius: 6px;
+    overflow: hidden
+  }
+  p:child(1) {
+    baclground-color(blue)
+  }
+  p:hover {
+    border: 3px solid red;
+  }
+  </style>
+</head>
+<body>
+  <input id="isi">
+  <button onclick="press()">
+    enter
+  </button>
+  <iframe src="" id="frame"></iframe>
+  <div id="text">
+    
+  </div>
+  <script>
+  // isi.value = ""
+   const myFrame = document.getElementById("frame")
+   var link = new Set([])
+   var haha = ""
+  
+   function download() {
+    var int = myFrame.contentWindow.document
+    var donlod = int.getElementsByTagName("img")
+    for (const x of donlod) {
+      var value = x.src
+      var newValue = value.startsWith("1", value.indexOf("1080"))
+      if (newValue == true) {
+        link.add(value)
+      }
+    }
+    
+    var txt = ""
+    link.forEach(function(value) {
+      txt += `<p onclick="copy(this.textContent)" id="${value}">${value}</p>`
+    })
+     
+    text.innerHTML = txt
+   }
+  
+   function instagramLink() {
+     const linkId = isi.value.slice(28,39)
+     const newLink = "https://www.instagram.com/p/"+linkId+"/embed"
+     myFrame.src = newLink
+   }
+  
+   function press() {
+     instagramLink()
+     setInterval(download,1000)
+     console.log("berhasil")
+   }
+   
+   function copy(param) {
+     navigator.clipboard.writeText(param)
+     isi.value = ""
+   }
+  </script>
+</body>
+</html>
